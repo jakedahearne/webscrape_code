@@ -19,7 +19,6 @@ def count_words(df, t1, t234, titles):
             browser.get(website)
             source = browser.find_element_by_tag_name("body").get_attribute("innerText")
             str_source = str(source).lower()
-            print(str_source)
             for word in t1:
                 df.at[i, word] = str_source.count(word)
                 if tier == 0 and str_source.count(word) > 0:
