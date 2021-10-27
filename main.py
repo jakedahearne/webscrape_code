@@ -2,6 +2,8 @@ import pandas as pd
 import selenium
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+import requests
+from bs4 import BeautifulSoup as bs
 
 TITLES = ["tier", "concrete restoration", "epoxy coatings", "floor coatings", "floor demo", "floor demolition",
           "floor maintenance", "flooring maintenance", "floor restoration", "flooring restoration",
@@ -60,9 +62,9 @@ def count_words(df):
         print(count, " of ", len(df), "websites visited.\n-------------------------")
         print(round(count/whole, 4) * 100, "% websites visited.")
         print("-------------------------")
-    browser.close()
 
     df.to_csv("counted.csv")
+    browser.close()
 
 
 def counter():
