@@ -2,8 +2,6 @@ import pandas as pd
 import selenium
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
-import requests
-from bs4 import BeautifulSoup as bs
 
 TITLES = ["tier", "concrete restoration", "epoxy coatings", "floor coatings", "floor demo", "floor demolition",
           "floor maintenance", "flooring maintenance", "floor restoration", "flooring restoration",
@@ -46,15 +44,15 @@ def count_words(df):
                     tier = 2
                 elif tier == 0 and tier_sum > 1:
                     tier = 3
-                else:
-                    tier = 4
+            if tier == 0:
+                tier = 4
             df.at[i, "tier"] = tier
         except selenium.common.exceptions.WebDriverException or TimeoutException:
             print("DNE")
             for word in TITLES:
                 df.at[i, word] = 0
 
-        if count % 1000 == 0:
+        if count % 100 == 0:
             df.to_csv("counted.csv")
 
         count += 1
