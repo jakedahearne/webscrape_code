@@ -42,7 +42,7 @@ def count_words(df):
             for word in TIER_234:
                 df.at[i, word] = str_source.count(word)
                 tier_sum += str_source.count(word)
-                if tier == 0 and tier_sum > 1 and str_source.count(word) > 1:
+                if tier == 0 and tier_sum > 1 and str_source.count("concrete") > 1:
                     tier = 2
                 elif tier == 0 and tier_sum > 1:
                     tier = 3
